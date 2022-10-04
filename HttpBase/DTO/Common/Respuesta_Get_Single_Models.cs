@@ -8,10 +8,10 @@ public class Respuesta_Get_Single_Models<T>
 
     public bool isError { get; set; }
 
-    public string error { get; set; }
+    public string error { get; set; } = string.Empty;
 }
 
 public class _Request_Get_Single
 {
-    public string id { get; set; }
+    public string id { get; set; } = string.Empty;
 }

@@ -1,5 +1,4 @@
-﻿
-namespace HttpBase.Models.Common;
+﻿namespace HttpBase.Models.Common;
 
 public class Respuesta_Post_Models<T>
 {
@@ -16,7 +15,7 @@ public class Respuesta_Post_Full_Models<T>
 {
     public T request { get; set; }
 
-    public List<Guid> resultado { get; set; }
+    public List<Guid> resultado { get; set; } = new List<Guid>();
 
     public bool isError { get; set; }
 

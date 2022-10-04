@@ -42,7 +42,6 @@ public abstract partial class HttpClient_APIBase
     public async Task<T> SendAsyncCustom<T>(SendType type, string uri, T content = default(T))
         where T : notnull, IBaseDTO, IErrores, new()
     {
-
         if (_currentUserService.UserToken.Length > 15)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
@@ -210,7 +209,6 @@ public abstract partial class HttpClient_APIBase
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
         }
 
-
         HttpRequestMessage request = new();
 
         switch (type)
@@ -277,14 +275,13 @@ public abstract partial class HttpClient_APIBase
     }
 
     [TypeFilter(typeof(ExceptionFilterGeneric))]
-    public async Task<(T Items, R Header, int Cant)> SendAsyncCustom<T, R>(SendType type, string uri)
-        where T : notnull, IBaseDTO, IErrores, new()
+    public async Task<(T1 Items, T2 Header, int Cant)> SendAsyncCustom<T1, T2>(SendType type, string uri)
+        where T1 : notnull, IBaseDTO, IErrores, new()
     {
         if (_currentUserService.UserToken.Length > 15)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
         }
-
 
         HttpRequestMessage request = new();
 
@@ -304,7 +301,7 @@ public abstract partial class HttpClient_APIBase
 
         if (Enumerable.Range(300, 300).Contains(statuscode))
         {
-            T respuesta = new();
+            T1 respuesta = new();
             respuesta.Errores = new();
             try
             {
@@ -323,7 +320,7 @@ public abstract partial class HttpClient_APIBase
                 respuesta.Errores.Add(problem);
             }
 
-            return (respuesta, default(R), 0);
+            return (respuesta, default(T2), 0);
         }
 
         if (resultado.IsSuccessStatusCode)
@@ -332,9 +329,9 @@ public abstract partial class HttpClient_APIBase
             {
                 case SendType.Get_Full_Cab:
                     {
-                        Respuesta_Get_Full_Models<T, R> respuesta = new();
+                        Respuesta_Get_Full_Models<T1, T2> respuesta = new();
                         respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Get_Full_Models<T, R>>();
+                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Get_Full_Models<T1, T2>>();
 
                         return (respuesta.resultado.items, respuesta.resultado.header, respuesta.resultado.totalCount);
                     }
@@ -352,7 +349,6 @@ public abstract partial class HttpClient_APIBase
         {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
         }
-
 
         HttpRequestMessage request = new();
 

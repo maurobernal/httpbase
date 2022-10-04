@@ -6,5 +6,5 @@ public class Respuesta_Post_File<T>
 
     public bool isError { get; set; }
 
-    public string error { get; set; }
+    public string error { get; set; } = string.Empty;
 }
