@@ -4,7 +4,6 @@ on:
     types: [closed]
   #pull_request_review:
     #types: [submitted]
-
 jobs:
   pushToNuget:
     #if: github.event.review.state == 'approved
