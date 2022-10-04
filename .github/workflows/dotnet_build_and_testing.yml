@@ -1,9 +1,6 @@
 name: BuildAndTesting
 
 on:
-  push:
-    branches:
-    - main
   pull_request:
     types: [opened, reopened]
     branches:
@@ -24,6 +21,3 @@ jobs:
     - name: Construyendo solución
       working-directory: HttpBase
       run: dotnet build --no-restore
-    - name: Pack
-      working-directory: HttpBase
-      run: dotnet pack --configuration Release -o out
