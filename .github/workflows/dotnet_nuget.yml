@@ -1,11 +1,12 @@
 name: Nuget
 on:
   pull_request_review:
-    types: [submitted]
+    #types: [submitted]
+    types: [closed]
 
 jobs:
   pushToNuget:
-    if: github.event.review.state == 'approved
+    #if: github.event.review.state == 'approved
     name: Deploy to Nuget
     runs-on: ubuntu-latest
     steps:
