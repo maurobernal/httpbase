@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Json;
+using System.Net.Http.Json;
 using HttpBase.DTO.Archivos;
 using HttpBase.DTO.Common;
 using HttpBase.Exceptions;
@@ -210,6 +210,7 @@ public abstract partial class HttpClient_APIBase
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
         }
 
+
         HttpRequestMessage request = new();
 
         switch (type)
@@ -284,6 +285,7 @@ public abstract partial class HttpClient_APIBase
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
         }
 
+
         HttpRequestMessage request = new();
 
         switch (type)
@@ -350,6 +352,7 @@ public abstract partial class HttpClient_APIBase
         {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
         }
+
 
         HttpRequestMessage request = new();
 
