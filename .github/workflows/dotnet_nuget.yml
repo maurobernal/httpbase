@@ -22,4 +22,5 @@ jobs:
       working-directory: HttpBase
       run: dotnet pack --configuration Release -o .
     - name: Push
+      working-directory: HttpBase
       run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET }} -s https://nuget.pkg.github.com/maurobernal/index.json --skip-duplicate --no-symbols
