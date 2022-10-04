@@ -18,7 +18,7 @@ jobs:
         dotnet-version: 6.0.x
     - name: Pack
       working-directory: HttpBase
-      run: dotnet build --configuration Release && dotnet pack --configuration Release -o out -p:PackageVersion=1.0.2 
+      run: dotnet build --configuration Release && dotnet pack --configuration Release -o out -p:PackageVersion=$version 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
