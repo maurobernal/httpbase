@@ -2,9 +2,9 @@
 
 public class ServerIdentidadConfiguration
 {
-    public string BaseAddress { get; set; }
+    public string BaseAddress { get; set; } = string.Empty;
 
-    public string ClientId { get; set; }
+    public string ClientId { get; set; } = string.Empty;
 
-    public string Secret { get; set; }
+    public string Secret { get; set; } = string.Empty;
 }

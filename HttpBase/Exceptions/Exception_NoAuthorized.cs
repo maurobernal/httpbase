@@ -1,6 +1,4 @@
-﻿
-namespace HttpBase.Exceptions;
-
+﻿namespace HttpBase.Exceptions;
 public class Exception_NotAuthorized : Exception
 {
     public Exception_NotAuthorized(int code)

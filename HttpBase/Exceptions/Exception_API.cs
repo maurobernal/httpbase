@@ -1,6 +1,4 @@
-﻿
-namespace HttpBase.Exceptions;
-
+﻿namespace HttpBase.Exceptions;
 public class Exception_API : Exception
 {
     public Exception_API(int code)

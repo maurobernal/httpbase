@@ -1,6 +1,4 @@
-﻿
-namespace HttpBase.Models.Common;
-
+﻿namespace HttpBase.Models.Common;
 public class Respuesta_Get_Full_Models<T, TR>
 {
     public Request_Get_Full request { get; set; }
@@ -9,7 +7,7 @@ public class Respuesta_Get_Full_Models<T, TR>
 
     public bool isError { get; set; }
 
-    public string error { get; set; }
+    public string error { get; set; } = string.Empty;
 
     public DateTime? fechaDesde { get; set; }
 
@@ -24,7 +22,7 @@ public class Respuesta_Get_Full_Models<T>
 
     public bool isError { get; set; }
 
-    public string error { get; set; }
+    public string error { get; set; } = string.Empty;
 
     public DateTime? fechaDesde { get; set; }
 
@@ -37,9 +35,9 @@ public class Request_Get_Full
 
     public int resPorPag { get; set; }
 
-    public string descripcion { get; set; }
+    public string descripcion { get; set; } = string.Empty;
 
-    public string estado { get; set; }
+    public string estado { get; set; } = string.Empty;
 
     public DateTime? fechaDesde { get; set; }
 
@@ -63,7 +61,7 @@ public class Resultado_Get<T>
 
 public class Resultado_Get_Full<T, TR>
 {
-    public T items { get; set; }
+    public T items { get; set; } 
 
     public DateTime? fechaDesde { get; set; }
 

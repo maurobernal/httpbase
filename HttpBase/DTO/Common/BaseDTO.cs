@@ -9,7 +9,7 @@ public class BaseDTO : IBaseDTO, IErrores
 
     [Required(ErrorMessage = "El campo es requerido")]
     [StringLength(50, ErrorMessage = "El campo debe tener entre 2 y 50 caracteres.", MinimumLength = 2)]
-    public string Descripcion { get; set; }
+    public string Descripcion { get; set; } = string.Empty;
 
-    public ListDTO<ProblemDetails> Errores { get; set; }
+    public ListDTO<ProblemDetails> Errores { get; set; } = new();
 }

@@ -1,6 +1,4 @@
-﻿
-namespace HttpBase.Exceptions;
-
+﻿namespace HttpBase.Exceptions;
 public class Exception_Forbidden : Exception
 {
     public Exception_Forbidden(int code)

@@ -1,6 +1,4 @@
-﻿
-namespace HttpBase.Exceptions;
-
+﻿namespace HttpBase.Exceptions;
 public class Exception_NotFound : Exception
 {
     public Exception_NotFound(int code)
