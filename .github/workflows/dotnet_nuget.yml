@@ -20,7 +20,7 @@ jobs:
         dotnet-version: 6.0.x
     - name: Pack
       working-directory: HttpBase
-      run: dotnet build --configuration Release && dotnet pack --configuration Release -o out
+      run: dotnet build --configuration Release && dotnet pack --configuration Release -o out -p:PackageVersion=$GITHUB_RUN_ID 
     - name: Push
       working-directory: HttpBase/out/
       run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET }} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols
