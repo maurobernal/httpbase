@@ -1,0 +1,22 @@
+name: Nuget
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    types: [closed]
+    branches:
+    - main
+
+jobs:
+  pushToNuget:
+    name: Deploy to Runly
+    runs-on: ubuntu-latest
+    - uses: actions/checkout@v2
+
+    - name: Pack
+      working-directory: HttpBase
+      run: dotnet pack --configuration Release -o .
+
+    - name: Push
+      run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET }} -s https://nuget.pkg.github.com/maurobernal/index.json --skip-duplicate --no-symbols
