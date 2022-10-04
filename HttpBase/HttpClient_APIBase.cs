@@ -1,4 +1,4 @@
-﻿using System.Net.Http.Json;
+using System.Net.Http.Json;
 using HttpBase.DTO.Archivos;
 using HttpBase.DTO.Common;
 using HttpBase.Exceptions;
@@ -42,8 +42,11 @@ public abstract partial class HttpClient_APIBase
     public async Task<T> SendAsyncCustom<T>(SendType type, string uri, T content = default(T))
         where T : notnull, IBaseDTO, IErrores, new()
     {
+
         if (_currentUserService.UserToken.Length > 15)
+        {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        }
 
         HttpRequestMessage request = new();
         var userId = _currentUserService.UserId;
@@ -203,7 +206,10 @@ public abstract partial class HttpClient_APIBase
         where T : notnull, IBaseDTO, IErrores, new()
     {
         if (_currentUserService.UserToken.Length > 15)
+        {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        }
+
 
         HttpRequestMessage request = new();
 
@@ -275,7 +281,10 @@ public abstract partial class HttpClient_APIBase
         where T : notnull, IBaseDTO, IErrores, new()
     {
         if (_currentUserService.UserToken.Length > 15)
+        {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        }
+
 
         HttpRequestMessage request = new();
 
@@ -340,7 +349,10 @@ public abstract partial class HttpClient_APIBase
         where T : class, IErrores, new()
     {
         if (_currentUserService.UserToken.Length > 15)
+        {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        }
+
 
         HttpRequestMessage request = new();
 
