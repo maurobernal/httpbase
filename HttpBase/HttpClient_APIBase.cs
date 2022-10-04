@@ -42,7 +42,11 @@ public abstract partial class HttpClient_APIBase
     public async Task<T> SendAsyncCustom<T>(SendType type, string uri, T content = default(T))
         where T : notnull, IBaseDTO, IErrores, new()
     {
-        _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+
+        if (_currentUserService.UserToken.Length > 15)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        }
 
         HttpRequestMessage request = new();
         var userId = _currentUserService.UserId;
@@ -201,7 +205,10 @@ public abstract partial class HttpClient_APIBase
     public async Task<(T Items, int Cant)> SendAsyncCustom<T>(SendType type, string uri)
         where T : notnull, IBaseDTO, IErrores, new()
     {
-        _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        if (_currentUserService.UserToken.Length > 15)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        }
 
         HttpRequestMessage request = new();
 
@@ -272,7 +279,10 @@ public abstract partial class HttpClient_APIBase
     public async Task<(T Items, R Header, int Cant)> SendAsyncCustom<T, R>(SendType type, string uri)
         where T : notnull, IBaseDTO, IErrores, new()
     {
-        _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        if (_currentUserService.UserToken.Length > 15)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        }
 
         HttpRequestMessage request = new();
 
@@ -336,7 +346,10 @@ public abstract partial class HttpClient_APIBase
     public async Task<T> SendAsyncFileCustom<T>(SendType type, string uri, IFormFile img, string fileName = null)
         where T : class, IErrores, new()
     {
-        _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        if (_currentUserService.UserToken.Length > 15)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
+        }
 
         HttpRequestMessage request = new();
 
