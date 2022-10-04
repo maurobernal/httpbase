@@ -1,9 +1,13 @@
 name: BuildAndTesting
 
 on:
-   pull_request:
+  push:
+    branches:
+    - main
+  pull_request:
     types: [opened, reopened]
-  
+    branches:
+    - main
 jobs:
  job1:
     name: Mas1_Build
