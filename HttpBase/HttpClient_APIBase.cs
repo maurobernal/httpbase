@@ -121,80 +121,89 @@ public abstract partial class HttpClient_APIBase
 
                 respuesta.Errores.Add(problem);
             }
-
             return respuesta;
         }
 
-        if (resultado.IsSuccessStatusCode)
+        try
         {
-            switch (type)
+            if (resultado.IsSuccessStatusCode)
             {
-                case SendType.Get_Single:
-                    {
-                        Respuesta_Get_Single_Models<T> respuesta = new();
-                        respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Get_Single_Models<T>>();
+                switch (type)
+                {
+                    case SendType.Get_Single:
+                        {
+                            Respuesta_Get_Single_Models<T> respuesta = new();
+                            respuesta.isError = !resultado.IsSuccessStatusCode;
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Get_Single_Models<T>>();
 
-                        return respuesta.resultado;
-                    }
+                            return respuesta.resultado;
+                        }
 
-                case SendType.Post:
-                    {
-                        Respuesta_Post_Models<T> respuesta = new();
-                        respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Post_Models<T>>();
-                        respuesta.request.Id = respuesta.resultado;
+                    case SendType.Post:
+                        {
+                            Respuesta_Post_Models<T> respuesta = new();
+                            respuesta.isError = !resultado.IsSuccessStatusCode;
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Post_Models<T>>();
+                            respuesta.request.Id = respuesta.resultado;
 
-                        return respuesta.request;
-                    }
+                            return respuesta.request;
+                        }
 
-                case SendType.Post_Full:
-                    {
-                        Respuesta_Post_Full_Models<T> respuesta = new();
-                        respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Post_Full_Models<T>>();
+                    case SendType.Post_Full:
+                        {
+                            Respuesta_Post_Full_Models<T> respuesta = new();
+                            respuesta.isError = !resultado.IsSuccessStatusCode;
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Post_Full_Models<T>>();
 
-                        return respuesta.request;
-                    }
+                            return respuesta.request;
+                        }
 
-                case SendType.Post_File:
-                    {
-                        Respuesta_Post_File_Models<T> respuesta = new();
-                        respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Post_File_Models<T>>();
+                    case SendType.Post_File:
+                        {
+                            Respuesta_Post_File_Models<T> respuesta = new();
+                            respuesta.isError = !resultado.IsSuccessStatusCode;
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Post_File_Models<T>>();
 
-                        return respuesta.request;
-                    }
+                            return respuesta.request;
+                        }
 
-                case SendType.Put:
-                    {
-                        Respuesta_Put_Models<T> respuesta = new();
-                        respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Put_Models<T>>();
+                    case SendType.Put:
+                        {
+                            Respuesta_Put_Models<T> respuesta = new();
+                            respuesta.isError = !resultado.IsSuccessStatusCode;
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Put_Models<T>>();
 
-                        return respuesta.request;
-                    }
+                            return respuesta.request;
+                        }
 
-                case SendType.Delete:
-                    {
-                        Respuesta_Delete_Models<T> respuesta = new();
-                        respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Delete_Models<T>>();
-                        respuesta.request.Id = respuesta.resultado;
+                    case SendType.Delete:
+                        {
+                            Respuesta_Delete_Models<T> respuesta = new();
+                            respuesta.isError = !resultado.IsSuccessStatusCode;
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Delete_Models<T>>();
+                            respuesta.request.Id = respuesta.resultado;
 
-                        return respuesta.request;
-                    }
+                            return respuesta.request;
+                        }
 
-                case SendType.Delete_Full:
-                    {
-                        Respuesta_Delete_Models<T> respuesta = new();
-                        respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Delete_Models<T>>();
-                        respuesta.request.Id = respuesta.resultado;
+                    case SendType.Delete_Full:
+                        {
+                            Respuesta_Delete_Models<T> respuesta = new();
+                            respuesta.isError = !resultado.IsSuccessStatusCode;
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Delete_Models<T>>();
+                            respuesta.request.Id = respuesta.resultado;
 
-                        return respuesta.request;
-                    }
+                            return respuesta.request;
+                        }
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception_Deserialize(
+                $@"Message: {ex.Message} 
+                  Statuscode: {resultado.StatusCode}
+                  Resl:  {res}");
         }
 
         throw new Exception();
@@ -256,19 +265,29 @@ public abstract partial class HttpClient_APIBase
             return (respuesta, statuscode);
         }
 
-        if (resultado.IsSuccessStatusCode)
+        try
         {
-            switch (type)
+            if (resultado.IsSuccessStatusCode)
             {
-                case SendType.Get_Full:
-                    {
-                        Respuesta_Get_Full_Models<T> respuesta = new();
-                        respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Get_Full_Models<T>>();
+                switch (type)
+                {
+                    case SendType.Get_Full:
+                        {
+                            Respuesta_Get_Full_Models<T> respuesta = new();
+                            respuesta.isError = !resultado.IsSuccessStatusCode;
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Get_Full_Models<T>>();
 
-                        return (respuesta.resultado.items, respuesta.resultado.totalCount);
-                    }
+                            return (respuesta.resultado.items, respuesta.resultado.totalCount);
+                        }
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception_Deserialize(
+                $@"Message: {ex.Message} 
+                  Statuscode: {resultado.StatusCode}
+                  Resl:  {res}");
         }
 
         throw new Exception();
@@ -323,19 +342,29 @@ public abstract partial class HttpClient_APIBase
             return (respuesta, default(T2), 0);
         }
 
-        if (resultado.IsSuccessStatusCode)
+        try
         {
-            switch (type)
+            if (resultado.IsSuccessStatusCode)
             {
-                case SendType.Get_Full_Cab:
-                    {
-                        Respuesta_Get_Full_Models<T1, T2> respuesta = new();
-                        respuesta.isError = !resultado.IsSuccessStatusCode;
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Get_Full_Models<T1, T2>>();
+                switch (type)
+                {
+                    case SendType.Get_Full_Cab:
+                        {
+                            Respuesta_Get_Full_Models<T1, T2> respuesta = new();
+                            respuesta.isError = !resultado.IsSuccessStatusCode;
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Get_Full_Models<T1, T2>>();
 
-                        return (respuesta.resultado.items, respuesta.resultado.header, respuesta.resultado.totalCount);
-                    }
+                            return (respuesta.resultado.items, respuesta.resultado.header, respuesta.resultado.totalCount);
+                        }
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception_Deserialize(
+                $@"Message: {ex.Message} 
+                  Statuscode: {resultado.StatusCode}
+                  Resl:  {res}");
         }
 
         throw new Exception();
@@ -417,26 +446,36 @@ public abstract partial class HttpClient_APIBase
         if (Enumerable.Range(500, 599).Contains((int)resultado.StatusCode))
             throw new Exception_API($"Motivo:{resultado.ReasonPhrase} URL:{request.RequestUri}", (int)resultado.StatusCode);
 
-        if (resultado.IsSuccessStatusCode)
+        try
         {
-            switch (type)
+            if (resultado.IsSuccessStatusCode)
             {
-                case SendType.Post_File:
-                    {
-                        Respuesta_Post_File<T> respuesta = new();
-                        respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Post_File<T>>();
+                switch (type)
+                {
+                    case SendType.Post_File:
+                        {
+                            Respuesta_Post_File<T> respuesta = new();
+                            respuesta = await resultado.Content.ReadFromJsonAsync<Respuesta_Post_File<T>>();
 
-                        return respuesta.resultado;
-                    }
+                            return respuesta.resultado;
+                        }
 
-                case SendType.Get_File:
-                    {
-                        FileGetDTO respuest = new();
-                        respuest.File = await resultado.Content.ReadAsStreamAsync();
+                    case SendType.Get_File:
+                        {
+                            FileGetDTO respuest = new();
+                            respuest.File = await resultado.Content.ReadAsStreamAsync();
 
-                        return respuest as T;
-                    }
+                            return respuest as T;
+                        }
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception_Deserialize(
+                $@"Message: {ex.Message} 
+                  Statuscode: {resultado.StatusCode}
+                  Resl:  {res}");
         }
 
         throw new Exception();
