@@ -8,5 +8,5 @@ public class ListPostDTO<T> : List<T>, IBaseDTO, IErrores
 
     public Guid Id { get; set; }
 
-    public ListDTO<ProblemDetails> Errores { get; set; } = new();
+    public ListDTO<ProblemDetails> Errores { get; set; } 
 }
