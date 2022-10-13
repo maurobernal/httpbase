@@ -213,6 +213,7 @@ public abstract partial class HttpClient_APIBase
     public async Task<(T Items, int Cant)> SendAsyncCustom<T>(SendType type, string uri)
         where T : notnull, IBaseDTO, IErrores, new()
     {
+
         if (_currentUserService.UserToken.Length > 15)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _currentUserService.UserToken);
@@ -231,9 +232,18 @@ public abstract partial class HttpClient_APIBase
 
         try
         {
-            resultado = await _httpClient.SendAsync(request);
+         //   resultado = await _httpClient.SendAsync(request);
+            var client= new HttpClient();
+            var request2 = new HttpRequestMessage();
+            
+
+            request2 = new(HttpMethod.Get, uri);
+            client.BaseAddress = new Uri("https://api.v1.metroin.ar");
+            resultado= await client.SendAsync(request2);
+
+
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             throw;
         }
