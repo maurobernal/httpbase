@@ -230,23 +230,7 @@ public abstract partial class HttpClient_APIBase
                 throw new Exception($"El tipo enviado es incorrecto:{type.ToString()}");
         }
 
-        try
-        {
-         //   resultado = await _httpClient.SendAsync(request);
-            var client= new HttpClient();
-            var request2 = new HttpRequestMessage();
-            
-
-            request2 = new(HttpMethod.Get, uri);
-            client.BaseAddress = new Uri("https://api.v1.metroin.ar");
-            resultado= await client.SendAsync(request2);
-
-
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
+           resultado = await _httpClient.SendAsync(request);
 
         string res = await resultado.Content.ReadAsStringAsync();
         int statuscode = (int)resultado.StatusCode;
