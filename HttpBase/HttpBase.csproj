@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>HttpBase for Net</Title>
-    <Description>HttpBase for HttpClient in Net 6.0</Description>
+    <Description>HttpBase for HttpClient in Net 7.0</Description>
     <PackageProjectUrl>https://github.com/maurobernal/httpbase</PackageProjectUrl>
     <RepositoryUrl>https://github.com/maurobernal/httpbase</RepositoryUrl>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -13,7 +13,8 @@
     <AssemblyVersion></AssemblyVersion>
     <FileVersion></FileVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
+    <PackageIcon>logo.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +24,10 @@
 
   <ItemGroup>
     <None Update="license.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
