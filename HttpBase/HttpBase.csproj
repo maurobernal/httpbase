@@ -18,16 +18,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="license.txt">
+    <Resource Include="Resources\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-    </None>
-    <None Update="Resources\logo.png">
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="license.txt">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
