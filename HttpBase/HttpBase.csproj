@@ -31,11 +31,31 @@
 		</Resource>
 	</ItemGroup>
 
+<<<<<<< HEAD
 	<ItemGroup>
 		<None Update="license.txt">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
+=======
+  <ItemGroup>
+    <Resource Include="Resources\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="license.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+>>>>>>> main
 
 </Project>
