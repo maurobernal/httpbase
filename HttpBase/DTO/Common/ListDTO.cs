@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace HttpBase.DTO.Common;
+﻿namespace HttpBase.DTO.Common;
 
 public class ListDTO<T> : List<T>, IBaseDTO, IErrores
 {
@@ -8,5 +6,5 @@ public class ListDTO<T> : List<T>, IBaseDTO, IErrores
 
     public Guid Id { get; set; }
 
-    public ListDTO<ProblemDetails> Errores { get; set; } 
+    public ListDTO<ProblemDetails> Errores { get; set; }
 }

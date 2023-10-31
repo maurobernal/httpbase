@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace HttpBase.DTO.Common;
+﻿namespace HttpBase.DTO.Common;
 
 public interface IBaseDTO
 {

@@ -1,43 +1,41 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Title>HttpBase for Net</Title>
+		<Description>HttpBase for HttpClient in Net 8.0</Description>
+		<PackageProjectUrl>https://github.com/maurobernal/httpbase</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/maurobernal/httpbase</RepositoryUrl>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageLicenseFile>license.txt</PackageLicenseFile>
+		<AssemblyVersion></AssemblyVersion>
+		<FileVersion></FileVersion>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Version>1.0.9</Version>
+		<PackageIcon>logo.png</PackageIcon>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Title>HttpBase for Net</Title>
-    <Description>HttpBase for HttpClient in Net 7.0</Description>
-    <PackageProjectUrl>https://github.com/maurobernal/httpbase</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/maurobernal/httpbase</RepositoryUrl>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageLicenseFile>license.txt</PackageLicenseFile>
-    <AssemblyVersion></AssemblyVersion>
-    <FileVersion></FileVersion>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.8</Version>
-    <PackageIcon>logo.png</PackageIcon>
-  </PropertyGroup>
+	<ItemGroup>
+		<None Remove="Resources\logo.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Resources\logo.png" />
-  </ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</Resource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Resources\logo.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="license.txt">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="license.txt">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

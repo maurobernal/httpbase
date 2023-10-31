@@ -1,17 +1,14 @@
 using System.Net.Http.Json;
+using System.Text.Json;
 using HttpBase.DTO.Archivos;
 using HttpBase.DTO.Common;
 using HttpBase.Exceptions;
-using HttpBase.Filters;
 using HttpBase.Interfaces;
 using HttpBase.Models.Common;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace HttpBase;
 
-[TypeFilter(typeof(ExceptionFilterGeneric))]
 public abstract partial class HttpClient_APIBase
 {
     private HttpClient _httpClient;
@@ -38,7 +35,6 @@ public abstract partial class HttpClient_APIBase
         Post_File = 10,
     }
 
-    [TypeFilter(typeof(ExceptionFilterGeneric))]
     public async Task<T> SendAsyncCustom<T>(SendType type, string uri, T content = default(T))
         where T : notnull, IBaseDTO, IErrores, new()
     {
@@ -57,37 +53,37 @@ public abstract partial class HttpClient_APIBase
                 break;
             case SendType.Post:
                 request = new(HttpMethod.Post, uri);
-                request.Content = new StringContent(JsonConvert.SerializeObject(content));
+                request.Content = new StringContent(JsonSerializer.Serialize(content));
                 request.Content.Headers.Remove("Content-Type");
                 request.Content.Headers.Add("Content-Type", "application/json");
                 break;
             case SendType.Post_Full:
                 request = new(HttpMethod.Post, uri);
-                request.Content = new StringContent(JsonConvert.SerializeObject(content));
+                request.Content = new StringContent(JsonSerializer.Serialize(content));
                 request.Content.Headers.Remove("Content-Type");
                 request.Content.Headers.Add("Content-Type", "application/json");
                 break;
             case SendType.Post_File:
                 request = new(HttpMethod.Post, uri);
-                request.Content = new StringContent(JsonConvert.SerializeObject(content));
+                request.Content = new StringContent(JsonSerializer.Serialize(content));
                 request.Content.Headers.Remove("Content-Type");
                 request.Content.Headers.Add("Content-Type", "application/json");
                 break;
             case SendType.Put:
                 request = new(HttpMethod.Put, uri);
-                request.Content = new StringContent(JsonConvert.SerializeObject(content));
+                request.Content = new StringContent(JsonSerializer.Serialize(content));
                 request.Content.Headers.Remove("Content-Type");
                 request.Content.Headers.Add("Content-Type", "application/json");
                 break;
             case SendType.Delete:
                 request = new(HttpMethod.Delete, uri);
-                request.Content = new StringContent(JsonConvert.SerializeObject(content));
+                request.Content = new StringContent(JsonSerializer.Serialize(content));
                 request.Content.Headers.Remove("Content-Type");
                 request.Content.Headers.Add("Content-Type", "application/json");
                 break;
             case SendType.Delete_Full:
                 request = new(HttpMethod.Delete, uri);
-                request.Content = new StringContent(JsonConvert.SerializeObject(content));
+                request.Content = new StringContent(JsonSerializer.Serialize(content));
                 request.Content.Headers.Remove("Content-Type");
                 request.Content.Headers.Add("Content-Type", "application/json");
                 break;
@@ -209,7 +205,6 @@ public abstract partial class HttpClient_APIBase
         throw new Exception();
     }
 
-    [TypeFilter(typeof(ExceptionFilterGeneric))]
     public async Task<(T Items, int Cant)> SendAsyncCustom<T>(SendType type, string uri)
         where T : notnull, IBaseDTO, IErrores, new()
     {
@@ -230,7 +225,7 @@ public abstract partial class HttpClient_APIBase
                 throw new Exception($"El tipo enviado es incorrecto:{type.ToString()}");
         }
 
-           resultado = await _httpClient.SendAsync(request);
+        resultado = await _httpClient.SendAsync(request);
 
         string res = await resultado.Content.ReadAsStringAsync();
         int statuscode = (int)resultado.StatusCode;
@@ -287,7 +282,6 @@ public abstract partial class HttpClient_APIBase
         throw new Exception();
     }
 
-    [TypeFilter(typeof(ExceptionFilterGeneric))]
     public async Task<(T1 Items, T2 Header, int Cant)> SendAsyncCustom<T1, T2>(SendType type, string uri)
         where T1 : notnull, IBaseDTO, IErrores, new()
     {
@@ -364,7 +358,6 @@ public abstract partial class HttpClient_APIBase
         throw new Exception();
     }
 
-    [TypeFilter(typeof(ExceptionFilterGeneric))]
     public async Task<T> SendAsyncFileCustom<T>(SendType type, string uri, IFormFile img, string fileName = null)
         where T : class, IErrores, new()
     {
@@ -386,7 +379,7 @@ public abstract partial class HttpClient_APIBase
 
             case SendType.Post_File:
                 request = new(HttpMethod.Post, uri);
-                request.Content = new StringContent(JsonConvert.SerializeObject(img));
+                request.Content = new StringContent(JsonSerializer.Serialize(img));
                 request.Content.Headers.Remove("Content-Type");
                 request.Content.Headers.Add("Content-Type", "multipart/form-data");
 

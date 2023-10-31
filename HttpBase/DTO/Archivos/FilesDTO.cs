@@ -1,6 +1,4 @@
 ﻿using HttpBase.DTO.Common;
-using Microsoft.AspNetCore.Mvc;
-
 namespace HttpBase.DTO.Archivos;
 
 public class FileGetDTO : IErrores

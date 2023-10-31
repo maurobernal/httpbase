@@ -1,5 +1,4 @@
 ﻿namespace HttpBase.DTO.Common;
-
 public class Mensajes_Models
 {
     public Mensajes_Models()
